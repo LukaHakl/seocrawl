@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# Crawl output. None of this belongs in git: it is a third party's site content
+# and, on a client engagement, their data. The audit workbooks and the resume
+# cache in particular carry page text, prices and URLs verbatim.
+reports/
+audit_*.xlsx
+audit_*.html
+crawl.log
+.cache/
+.seocrawl_cache/
+*.sqlite
