@@ -1,0 +1,67 @@
+# Optional config file. Every key here is also a CLI flag, and the flag wins.
+# seocrawl reads ./seocrawl.toml automatically, or pass one with --config.
+#
+# Patterns use TOML literal strings (single quotes) so regex backslashes
+# need no escaping.
+
+[seocrawl]
+# start_url = "https://example.com"
+
+max_urls = 10000
+delay = 0.7
+workers = 4
+timeout = 20.0
+
+# Only crawl URLs matching these regexes. Empty means everything on the domain.
+include = []
+
+# Shopify defaults worth skipping: cart, account, search and faceted collections.
+# Faceted URLs multiply into thousands of near-identical pages and burn the crawl
+# budget without adding anything to the audit.
+exclude = [
+    '/cart',
+    '/account',
+    '/checkout',
+    '/customer_authentication',
+    '/services/login_with_shop',
+    '/search\?',
+    '\?filter\.',
+    '\?sort_by=',
+    '\?variant=',
+]
+
+user_agent = "Mozilla/5.0 (compatible; seocrawl/1.0; SEO audit; +mailto:you@example.com)"
+
+# Images are HEAD-requested to find oversized ones, and those requests dominate
+# crawl time -- on a 449-page site they were ~85% of it. Two limits keep that in
+# check: how many images per page, and how many pages of one URL template
+# (/products/*, /collections/*) get sampled before sister pages are skipped.
+# Set image_sample_per_template = 0 to size-check every page.
+image_head_limit = 5
+image_sample_per_template = 25
+near_duplicate_distance = 8
+
+# --- spelling ---
+# "auto" prefers LanguageTool (grammar + spelling, needs Java on the machine)
+# and falls back to pyspellchecker. Other values: "languagetool",
+# "pyspellchecker", "off".
+spellcheck = true
+spellcheck_engine = "auto"
+lang = "en"
+# Words never reported as typos. This is on top of the automatic whitelist,
+# which promotes any capitalized mid-sentence word seen on 3+ pages to a brand
+# term -- so product names rarely need listing here by hand.
+spellcheck_whitelist = []
+brand_term_min_pages = 3
+
+# --- headings and anchors ---
+# Heading texts treated as template furniture rather than content. Leave empty
+# to use the built-in list (featured collections, you may also like, ...).
+furniture_headings = []
+# Anchor texts that promise a specific destination; flagged when they point at
+# the homepage instead. Empty uses the built-in list (sale, shop, popular, ...).
+destination_anchors = []
+
+# psi = true
+# psi_api_key = "YOUR_KEY"      # or set the PSI_API_KEY environment variable
+psi_top = 10

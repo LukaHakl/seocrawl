@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "seocrawl"
+version = "1.3.0"
+description = "A mini Screaming Frog: SEO audit crawler tuned for small/mid e-commerce sites"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.0",
+    "openpyxl>=3.1",
+    "rich>=13.7",
+    "pyspellchecker>=0.8",
+]
+
+[project.optional-dependencies]
+js = ["playwright>=1.44"]
+# Grammar-aware spellchecking. Needs a JVM; seocrawl falls back to
+# pyspellchecker automatically when it is unavailable.
+grammar = ["language_tool_python>=2.8"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+seocrawl = "seocrawl.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["seocrawl*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
