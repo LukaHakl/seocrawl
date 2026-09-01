@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Traditional Bifold Wallet in Full Grain Leather</title>
+  <meta name="description" content="A slim full-grain leather bifold with six card slots, handmade to order and guaranteed for life.">
+</head>
+<body>
+  <header>
+    <a href="/"><img src="/logo.svg" alt="Example Shop" width="120" height="32"></a>
+  </header>
+  <main>
+    <h1>Traditional Bifold Wallet</h1>
+
+    <!-- The LCP element: full-width hero, but lazily loaded. -->
+    <img src="/cdn/bifold-1600.jpg"
+         srcset="/cdn/bifold-800.jpg 800w, /cdn/bifold-1600.jpg 1600w, /cdn/bifold-2400.jpg 2400w"
+         sizes="100vw"
+         loading="lazy"
+         alt="Traditional bifold wallet in natural leather">
+
+    <p>Six card slots, two hidden pockets and a full-length bill compartment,
+    cut from a single panel of full-grain leather and saddle-stitched by hand.</p>
+
+    <!-- Below-fold gallery: correctly lazy. -->
+    <img src="/cdn/bifold-open-1600.jpg"
+         srcset="/cdn/bifold-open-800.jpg 800w, /cdn/bifold-open-1600.jpg 1600w"
+         sizes="(max-width: 768px) 100vw, 50vw"
+         loading="lazy" alt="Wallet open showing card slots">
+
+    <!-- Below-fold thumbnails: correctly lazy, and small. -->
+    <ul class="thumbs">
+      <li><img src="/cdn/thumb-a.jpg" sizes="64px" loading="lazy" alt="Black"></li>
+      <li><img src="/cdn/thumb-b.jpg" sizes="64px" loading="lazy" alt="Natural"></li>
+    </ul>
+  </main>
+</body>
+</html>
